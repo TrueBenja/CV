@@ -10,7 +10,7 @@
           content="width=device-width, user-scalable=no, initial-scale=1.0, maximum-scale=1.0, minimum-scale=1.0">
     <meta http-equiv="X-UA-Compatible" content="ie=edge">
     <link rel="stylesheet" href="css/style.css">
-    <title>Hjem</title>
+    <title>Om meg</title>
 </head>
 <body>
 <header>
@@ -20,8 +20,8 @@
     </ul>
 </header>
 <main>
-    <h1>Velkommen</h1>
-    <p>Dette er en test</p>
+    <h1>Om meg</h1>
+    <p>Jeg heter Benjamin, og jeg er dataingeniørstudent ved HVL. Dette er mitt forsøk på en CV-like nettside for å vise hva jeg kan.</p>
 </main>
 </body>
 </html>
