@@ -17,11 +17,15 @@
     <ul>
         <li><a href="/">Hjem</a></li>
         <li><a href="/about">Om meg</a></li>
+        <li class="nav-right"><a href="https://www.linkedin.com/in/benjamin-storeb%C3%B8-80049a38b/" target="_blank"><img class="logo" src="images/InBug-White.png" alt="LinkedIn"></a></li>
+        <li class="nav-right"><a href="https://github.com/TrueBenja" target="_blank"><img class="logo" src="images/github-mark-white.svg" alt="Github"></a></li>
     </ul>
 </nav>
 <main>
     <h1>Om meg</h1>
+    <img id="my-picture" src="images/bilde_av_meg.jpg" alt="Bilde av meg">
     <p>Jeg heter Benjamin, og jeg er dataingeniørstudent ved HVL. Dette er mitt forsøk på en CV-like nettside for å vise hva jeg kan.</p>
+    <p>Jeg kan ikke si jeg er noe front-end spesialist, men jeg prøver.</p>
 </main>
 </body>
 </html>
