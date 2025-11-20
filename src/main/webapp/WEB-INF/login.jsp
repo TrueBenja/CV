@@ -10,13 +10,21 @@
           content="width=device-width, user-scalable=no, initial-scale=1.0, maximum-scale=1.0, minimum-scale=1.0">
     <meta http-equiv="X-UA-Compatible" content="ie=edge">
     <link rel="stylesheet" href="css/style.css">
-    <title>Hjem</title>
+    <title>Login</title>
 </head>
 <body>
 <jsp:include page="navbar.jsp"/>
 <main>
-    <h1>Hjem</h1>
-    <p>Velkommen til min nettside! Her vil du få informasjon om hvem jeg er, og hva jeg har å tilby.</p>
+    <h1>Login</h1>
+    <fieldset>
+        <form action="todo_login" method="post">
+            <p>
+                <label for="username">Username: </label>
+                <input type="text" name="username" id="username">
+            </p>
+            <input type="submit" value="Login">
+        </form>
+    </fieldset>
 </main>
 </body>
 </html>

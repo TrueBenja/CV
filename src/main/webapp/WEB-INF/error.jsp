@@ -13,14 +13,7 @@
     <title>Error</title>
 </head>
 <body>
-<nav>
-    <ul>
-        <li><a href="/">Hjem</a></li>
-        <li><a href="/about">Om meg</a></li>
-        <li class="nav-right"><a href="https://www.linkedin.com/in/benjamin-storeb%C3%B8-80049a38b/" target="_blank"><img class="logo" src="images/InBug-White.png" alt="LinkedIn"></a></li>
-        <li class="nav-right"><a href="https://github.com/TrueBenja" target="_blank"><img class="logo" src="images/github-mark-white.svg" alt="Github"></a></li>
-    </ul>
-</nav>
+<jsp:include page="navbar.jsp"/>
 <main>
     <h1>Error Status Code: ${status}</h1>
     <p>Something went wrong! Go to <a href="/">home page</a></p>
