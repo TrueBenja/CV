@@ -16,8 +16,12 @@
 <jsp:include page="navbar.jsp"/>
 <main>
     <h1>Login</h1>
+    <c:if test="${not empty message}">
+        <p class="error-message">${message}</p>
+    </c:if>
+
     <fieldset>
-        <form action="todo_login" method="post">
+        <form action="todo-login" method="post">
             <p>
                 <label for="username">Username: </label>
                 <input type="text" name="username" id="username">

@@ -11,6 +11,10 @@ ul#todo-list {
     overflow: hidden;
 }
 
+.error-message {
+    color: red;
+}
+
 /* Navbar */
 nav ul {
     list-style-type: none;

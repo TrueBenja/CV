@@ -19,14 +19,14 @@ public class TodoController {
     @GetMapping("/todo")
     public String todo(Model model, HttpServletRequest request, RedirectAttributes ra) {
         if (!todoLoginService.isLoggedIn(request.getSession())) {
-            return "redirect:todo_login";
+            return "redirect:todo-login";
         }
 
         model.addAttribute("todos", request.getSession().getAttribute("todos"));
         return "todo";
     }
 
-    @GetMapping("/todo_login")
+    @GetMapping("/todo-login")
     public String login(HttpServletRequest request) {
         if (todoLoginService.isLoggedIn(request.getSession())) {
             return "redirect:todo";
@@ -35,8 +35,12 @@ public class TodoController {
         return "login";
     }
 
-    @PostMapping("/todo_login")
+    @PostMapping("/todo-login")
     public String login(HttpServletRequest request, String username, RedirectAttributes ra) {
+        if (username.isEmpty()) {
+            ra.addFlashAttribute("message", "Username is empty");
+            return "redirect:todo-login";
+        }
         todoLoginService.login(request, username);
         return "redirect:todo";
     }
@@ -44,7 +48,7 @@ public class TodoController {
     @PostMapping("/add-todo")
     public String addTodo(HttpServletRequest request, String todo) {
         if (!todoLoginService.isLoggedIn(request.getSession())) {
-            return "redirect:todo_login";
+            return "redirect:todo-login";
         }
 
         List<String> items = (ArrayList<String>) request.getSession().getAttribute("todos");
@@ -57,7 +61,7 @@ public class TodoController {
     @PostMapping("remove-todos")
     public String removeTodo(HttpServletRequest request, String[] todos) {
         if (!todoLoginService.isLoggedIn(request.getSession())) {
-            return "redirect:todo_login";
+            return "redirect:todo-login";
         }
 
         List<String> items = (ArrayList<String>) request.getSession().getAttribute("todos");
@@ -69,5 +73,11 @@ public class TodoController {
         }
 
         return "redirect:todo";
+    }
+
+    @PostMapping("todo-logout")
+    public String logout(HttpServletRequest request) {
+        todoLoginService.logout(request.getSession());
+        return "redirect:todo-login";
     }
 }

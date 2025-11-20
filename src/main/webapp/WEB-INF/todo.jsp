@@ -35,6 +35,10 @@
         <br>
         <input type="submit" value="Fjern valgte">
     </form>
+    <br>
+    <form action="todo-logout" method="post">
+        <input type="submit" value="Logg ut">
+    </form>
 </main>
 </body>
 </html>
