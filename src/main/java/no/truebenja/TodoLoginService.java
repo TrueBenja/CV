@@ -26,4 +26,16 @@ public class TodoLoginService {
     public boolean isLoggedIn(HttpSession session) {
         return session != null && session.getAttribute("username") != null;
     }
+
+    public boolean isValidCredentials(String username, String password) {
+        if (username == null || password == null) {
+            return false;
+        }
+
+        if (!username.matches("^\\w{1,15}$")) {
+            return false;
+        }
+
+        return password.matches("^\\w{12,}$");
+    }
 }

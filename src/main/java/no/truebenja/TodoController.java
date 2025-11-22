@@ -16,6 +16,9 @@ public class TodoController {
     @Autowired
     TodoLoginService todoLoginService;
 
+    @Autowired
+    PasswordService passwordService;
+
     @GetMapping("/todo")
     public String todo(Model model, HttpServletRequest request, RedirectAttributes ra) {
         if (!todoLoginService.isLoggedIn(request.getSession())) {
@@ -24,6 +27,16 @@ public class TodoController {
 
         model.addAttribute("todos", request.getSession().getAttribute("todos"));
         return "todo";
+    }
+
+    @GetMapping("/todo-register")
+    public String register(Model model) {
+        return "register";
+    }
+
+    @PostMapping("/todo-register")
+    public String register(String username, String password, RedirectAttributes ra) {
+        return "redirect:todo-login";
     }
 
     @GetMapping("/todo-login")
@@ -36,11 +49,12 @@ public class TodoController {
     }
 
     @PostMapping("/todo-login")
-    public String login(HttpServletRequest request, String username, RedirectAttributes ra) {
-        if (username.isEmpty()) {
-            ra.addFlashAttribute("message", "Username is empty");
+    public String login(HttpServletRequest request, String username, String password, RedirectAttributes ra) {
+        if (username.isEmpty() || password.isEmpty()) {
+            ra.addFlashAttribute("message", "Username or password is empty");
             return "redirect:todo-login";
         }
+
         todoLoginService.login(request, username);
         return "redirect:todo";
     }
@@ -55,6 +69,7 @@ public class TodoController {
         if (!todo.trim().isEmpty()) {
             items.add(todo);
         }
+
         return "redirect:todo";
     }
 

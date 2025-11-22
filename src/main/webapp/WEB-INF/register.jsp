@@ -10,7 +10,8 @@
           content="width=device-width, user-scalable=no, initial-scale=1.0, maximum-scale=1.0, minimum-scale=1.0">
     <meta http-equiv="X-UA-Compatible" content="ie=edge">
     <link rel="stylesheet" href="css/style.css">
-    <title>Login</title>
+    <script src="js/todo-register.js" defer></script>
+    <title>Register</title>
 </head>
 <body>
 <jsp:include page="navbar.jsp"/>
@@ -21,17 +22,17 @@
     </c:if>
 
     <fieldset>
-        <form action="todo-login" method="post">
+        <form action="todo-register" method="post">
             <p>
                 <label for="username">Username: </label>
-                <input type="text" name="username" id="username"><br>
+                <input type="text" name="username" id="username" pattern="^\w{1,15}$"><br>
                 <label for="password">Password: </label>
-                <input type="password" name="password", id="password">
+                <input type="password" name="password", id="password" pattern="^\w{12,}$">
             </p>
-            <input type="submit" value="Login">
+            <input type="submit" value="Registrer">
         </form>
     </fieldset>
-    <p>Don't have an account? <a href="todo-register">Register</a></p>
+    <p>Already registered an account? <a href="todo-login">Login</a></p>
 </main>
 </body>
 </html>
