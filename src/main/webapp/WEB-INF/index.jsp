@@ -16,6 +16,9 @@
 <jsp:include page="navbar.jsp"/>
 <main>
     <h1>Hjem</h1>
+    <c:if test="${not empty visitedBefore}">
+        <p>${visitedBefore}</p>
+    </c:if>
     <p>Velkommen til min nettside! Her vil du få informasjon om hvem jeg er, og hva jeg har å tilby.</p>
 </main>
 </body>
