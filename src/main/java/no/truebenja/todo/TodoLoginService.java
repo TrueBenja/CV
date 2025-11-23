@@ -1,4 +1,4 @@
-package no.truebenja;
+package no.truebenja.todo;
 
 import jakarta.servlet.http.HttpServletRequest;
 import jakarta.servlet.http.HttpSession;
@@ -32,7 +32,7 @@ public class TodoLoginService {
             return false;
         }
 
-        if (!username.matches("^\\w{1,15}$")) {
+        if (!username.matches("^\\w{4,25}$")) {
             return false;
         }
 

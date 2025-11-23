@@ -1,14 +1,19 @@
-package no.truebenja;
+package no.truebenja.todo;
 
-import jakarta.persistence.Entity;
-import jakarta.persistence.Id;
+import jakarta.persistence.*;
+
+import java.util.List;
 
 @Entity
+@Table(schema = "todo")
 public class TodoUser {
     @Id
     private String username;
     private String hash;
     private String salt;
+
+    @OneToMany(fetch = FetchType.EAGER, mappedBy = "user")
+    private List<Todo> todos;
 
     public TodoUser() {}
 
@@ -40,5 +45,9 @@ public class TodoUser {
 
     public void setSalt(String salt) {
         this.salt = salt;
+    }
+
+    public List<Todo> getTodos() {
+        return todos;
     }
 }

@@ -25,7 +25,7 @@
         <form action="todo-register" method="post">
             <p>
                 <label for="username">Username: </label>
-                <input type="text" name="username" id="username" pattern="^\w{1,15}$"><br>
+                <input type="text" name="username" id="username" pattern="^\w{4,25}$"><br>
                 <label for="password">Password: </label>
                 <input type="password" name="password", id="password" pattern="^\w{12,}$">
             </p>

@@ -1,4 +1,4 @@
-package no.truebenja;
+package no.truebenja.todo;
 
 import jakarta.servlet.http.HttpServletRequest;
 import org.springframework.beans.factory.annotation.Autowired;
@@ -19,13 +19,18 @@ public class TodoController {
     @Autowired
     PasswordService passwordService;
 
+    @Autowired
+    TodoService todoService;
+
     @GetMapping("/todo")
     public String todo(Model model, HttpServletRequest request, RedirectAttributes ra) {
         if (!todoLoginService.isLoggedIn(request.getSession())) {
             return "redirect:todo-login";
         }
 
-        model.addAttribute("todos", request.getSession().getAttribute("todos"));
+        List<Todo> todos = todoService.findUserByUsername((String) request.getSession().getAttribute("username")).getTodos();
+
+        model.addAttribute("todos", todos);
         return "todo";
     }
 
@@ -36,6 +41,22 @@ public class TodoController {
 
     @PostMapping("/todo-register")
     public String register(String username, String password, RedirectAttributes ra) {
+        if (todoService.checkIfExists(username)) {
+            ra.addFlashAttribute("message", "User with that username already exists");
+            return "redirect:todo-register";
+        }
+
+        if (!todoLoginService.isValidCredentials(username, password)) {
+            ra.addFlashAttribute("message", "Invalid credentials");
+            return "redirect:todo-register";
+        }
+
+        String salt = passwordService.generateRandomSalt();
+        String hash = passwordService.hashWithSalt(password, salt);
+
+        TodoUser  todoUser = new TodoUser(username, hash, salt);
+        todoService.registerUser(todoUser);
+
         return "redirect:todo-login";
     }
 
@@ -55,6 +76,13 @@ public class TodoController {
             return "redirect:todo-login";
         }
 
+        TodoUser todoUser = todoService.findUserByUsername(username);
+
+        if (todoUser == null || !passwordService.checkPassword(password, todoUser.getHash(), todoUser.getSalt())) {
+            ra.addFlashAttribute("message", "Invalid username and/or password!");
+            return "redirect:todo-login";
+        }
+
         todoLoginService.login(request, username);
         return "redirect:todo";
     }
@@ -65,9 +93,17 @@ public class TodoController {
             return "redirect:todo-login";
         }
 
-        List<String> items = (ArrayList<String>) request.getSession().getAttribute("todos");
+        // List<String> items = (ArrayList<String>) request.getSession().getAttribute("todos");
+
+        TodoUser user = todoService.findUserByUsername((String) request.getSession().getAttribute("username"));
+
+        List<Todo> items = user.getTodos();
+
+        Todo newTodo = new Todo(todo, user);
+
         if (!todo.trim().isEmpty()) {
-            items.add(todo);
+            //items.add(newTodo);
+            todoService.saveTodo(newTodo);
         }
 
         return "redirect:todo";
@@ -79,12 +115,11 @@ public class TodoController {
             return "redirect:todo-login";
         }
 
-        List<String> items = (ArrayList<String>) request.getSession().getAttribute("todos");
+        // List<String> items = (ArrayList<String>) request.getSession().getAttribute("todos");
 
-        if (todos != null) {
-            for (String todo : todos) {
-                items.remove(todo);
-            }
+        for (String todo : todos) {
+            Todo todoToDelete = todoService.findTodoByName(todo);
+            todoService.removeTodo(todoToDelete);
         }
 
         return "redirect:todo";

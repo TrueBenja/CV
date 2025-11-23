@@ -1,4 +1,4 @@
-package no.truebenja;
+package no.truebenja.todo;
 
 import jakarta.xml.bind.DatatypeConverter;
 import org.springframework.stereotype.Service;
@@ -54,6 +54,12 @@ public class PasswordService {
         return  DatatypeConverter.printHexBinary(keyHash);
     }
 
+    /**
+     * @param password
+     * @param hash
+     * @param salt
+     * @return True if the password matches the hash and salt
+     */
     public boolean checkPassword(String password, String hash, String salt) {
         if (password == null || hash == null || salt == null) {
             throw new IllegalArgumentException("Password or hash or salt is null");
