@@ -27,7 +27,7 @@
                 <label for="username">Username: </label>
                 <input type="text" name="username" id="username" pattern="^\w{4,25}$"><br>
                 <label for="password">Password: </label>
-                <input type="password" name="password", id="password" pattern="^\w{12,}$">
+                <input type="password" name="password" id="password" pattern="^\w{12,}$">
             </p>
             <input type="submit" value="Register">
         </form>

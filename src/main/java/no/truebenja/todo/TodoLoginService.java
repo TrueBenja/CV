@@ -4,8 +4,6 @@ import jakarta.servlet.http.HttpServletRequest;
 import jakarta.servlet.http.HttpSession;
 import org.springframework.stereotype.Service;
 
-import java.util.ArrayList;
-
 @Service
 public class TodoLoginService {
     public void logout(HttpSession session) {
@@ -19,7 +17,6 @@ public class TodoLoginService {
 
         HttpSession session = request.getSession();
         session.setAttribute("username", username);
-        session.setAttribute("todos", new ArrayList<String>());
         session.setMaxInactiveInterval(3600);
     }
 
