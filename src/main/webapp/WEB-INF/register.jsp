@@ -16,7 +16,7 @@
 <body>
 <jsp:include page="navbar.jsp"/>
 <main>
-    <h1>Login</h1>
+    <h1>Register</h1>
     <c:if test="${not empty message}">
         <p class="error-message">${message}</p>
     </c:if>
@@ -29,7 +29,7 @@
                 <label for="password">Password: </label>
                 <input type="password" name="password", id="password" pattern="^\w{12,}$">
             </p>
-            <input type="submit" value="Registrer">
+            <input type="submit" value="Register">
         </form>
     </fieldset>
     <p>Already registered an account? <a href="todo-login">Login</a></p>
