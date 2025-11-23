@@ -28,7 +28,7 @@
         <ul id="todo-list">
             <c:forEach var="todo" items="${todos}">
                 <li>
-                    <input type="checkbox" name="todos" id="${todo}" value="${todo}"> <label for="${todo}">${todo}</label>
+                    <input type="checkbox" name="todos" id="${todo}" value="${todo}"> <label for="${todo}"><c:out value="${todo}"/></label>
                 </li>
             </c:forEach>
         </ul>
