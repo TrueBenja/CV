@@ -116,9 +116,11 @@ public class TodoController {
 
         // List<String> items = (ArrayList<String>) request.getSession().getAttribute("todos");
 
-        for (String todo : todos) {
-            Todo todoToDelete = todoService.findTodoByName(todo);
-            todoService.removeTodo(todoToDelete);
+        if (todos != null) {
+            for (String todo : todos) {
+                Todo todoToDelete = todoService.findTodoByName(todo);
+                todoService.removeTodo(todoToDelete);
+            }
         }
 
         return "redirect:todo";
